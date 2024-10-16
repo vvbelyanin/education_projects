@@ -1,0 +1,122 @@
+schema: '2.0'
+stages:
+  get_data:
+    cmd: python scripts/data.py
+    deps:
+    - path: scripts/data.py
+      hash: md5
+      md5: 5189f94ab3bf361e700af1d2239c5850
+      size: 863
+    outs:
+    - path: data/initial_data.csv
+      hash: md5
+      md5: 1de4b59fcd7ab334e431c5f458137d1a
+      size: 15533325
+      cloud:
+        my_storage:
+          etag: 1de4b59fcd7ab334e431c5f458137d1a
+          version_id: 00061530E4C08D0E
+  fit_model:
+    cmd: python scripts/fit.py
+    deps:
+    - path: data/initial_data.csv
+      hash: md5
+      md5: 1de4b59fcd7ab334e431c5f458137d1a
+      size: 15533325
+    - path: scripts/fit.py
+      hash: md5
+      md5: 4c765d4c3ff07273ceb278ea136f6dc5
+      size: 2012
+    params:
+      params.yaml:
+        depth: 6
+        iterations: 1000
+        learning_rate: 1
+        loss_function: MAE
+        one_hot_drop: first
+        random_state: 42
+    outs:
+    - path: data/x_test.csv
+      hash: md5
+      md5: c65e676ba17847e1eb6f8473a4ca0a7e
+      size: 3595873
+      cloud:
+        my_storage:
+          etag: c65e676ba17847e1eb6f8473a4ca0a7e
+          version_id: 00061530E4BCFB63
+    - path: data/x_train.csv
+      hash: md5
+      md5: 76f452ceae175c5fd91a5b17161a9dc9
+      size: 10794851
+      cloud:
+        my_storage:
+          etag: 76f452ceae175c5fd91a5b17161a9dc9
+          version_id: 00061530E4BF33AA
+    - path: data/y_test.csv
+      hash: md5
+      md5: 3c6169d027e3e583b35c34ab6edc03a1
+      size: 283157
+      cloud:
+        my_storage:
+          etag: 3c6169d027e3e583b35c34ab6edc03a1
+          version_id: 00061530E4BADD07
+    - path: data/y_train.csv
+      hash: md5
+      md5: a63a5571d1d7d39245732b16593ad747
+      size: 849387
+      cloud:
+        my_storage:
+          etag: a63a5571d1d7d39245732b16593ad747
+          version_id: 00061530E4BBB1EB
+    - path: models/fitted_model.pkl
+      hash: md5
+      md5: e9038d7f4c55c16b15e5f5dc82efa53d
+      size: 1097632
+      cloud:
+        my_storage:
+          etag: e9038d7f4c55c16b15e5f5dc82efa53d
+          version_id: 00061530E4BB3478
+  evaluate_model:
+    cmd: python scripts/evaluate.py
+    deps:
+    - path: data/x_test.csv
+      hash: md5
+      md5: c65e676ba17847e1eb6f8473a4ca0a7e
+      size: 3595873
+    - path: data/x_train.csv
+      hash: md5
+      md5: 76f452ceae175c5fd91a5b17161a9dc9
+      size: 10794851
+    - path: data/y_test.csv
+      hash: md5
+      md5: 3c6169d027e3e583b35c34ab6edc03a1
+      size: 283157
+    - path: data/y_train.csv
+      hash: md5
+      md5: a63a5571d1d7d39245732b16593ad747
+      size: 849387
+    - path: models/fitted_model.pkl
+      hash: md5
+      md5: e9038d7f4c55c16b15e5f5dc82efa53d
+      size: 1097632
+    - path: scripts/evaluate.py
+      hash: md5
+      md5: ce18e1e66b67bc103a6dbba8cc89cbdf
+      size: 1522
+    params:
+      params.yaml:
+        metrics:
+        - neg_mean_absolute_error
+        - neg_root_mean_squared_error
+        n_jobs: -1
+        n_splits: 5
+        random_state: 42
+    outs:
+    - path: cv_results/cv_res.json
+      hash: md5
+      md5: 2ed90b6e971eda470bba94f556adc745
+      size: 194
+      cloud:
+        my_storage:
+          etag: 2ed90b6e971eda470bba94f556adc745
+          version_id: 00061530E4B72174

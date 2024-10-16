@@ -1,0 +1,42 @@
+# the services are used in stages 3, 4
+
+services:
+  prometheus:
+    # Use the official Prometheus image
+    image: prom/prometheus
+    
+    # Map the host port to the container port specified by the PROM_PORT environment variable
+    ports:
+      - "${PROM_PORT}:${PROM_PORT}"
+    
+    # Mount the Prometheus configuration file from the host to the container
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    
+    # Override the default command to use the specified configuration file
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    
+    # Set the hostname for the Prometheus container
+    hostname: prometheus 
+  
+  grafana:
+    # Use the official Grafana image
+    image: grafana/grafana
+    
+    # Specify the environment file to use for environment variables
+    env_file:
+      - ./.env
+    
+    # Map the host port to the container port specified by the GRAF_PORT environment variable
+    ports:
+      - "${GRAF_PORT}:${GRAF_PORT}"
+    
+    # Mount the Grafana provisioning directory from the host to the container
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning        
+    
+    # Pass environment variables for Grafana admin user and password
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASS}

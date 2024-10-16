@@ -1,0 +1,42 @@
+# part2_dvc/dvc.yaml
+stages:
+  get_data:
+    cmd: python scripts/data.py
+    deps:
+      - scripts/data.py
+    outs:
+      - data/initial_data.csv
+  fit_model:
+    cmd: python scripts/fit.py
+    deps:
+      - data/initial_data.csv
+      - scripts/fit.py
+    params:
+      - one_hot_drop
+      - random_state
+      - learning_rate
+      - iterations
+      - depth
+      - loss_function
+    outs:
+      - models/fitted_model.pkl
+      - data/x_train.csv
+      - data/y_train.csv
+      - data/x_test.csv
+      - data/y_test.csv
+  evaluate_model:
+    cmd: python scripts/evaluate.py
+    deps:
+      - models/fitted_model.pkl
+      - scripts/evaluate.py
+      - data/x_train.csv
+      - data/y_train.csv
+      - data/x_test.csv
+      - data/y_test.csv
+    params:
+      - n_splits
+      - random_state
+      - n_jobs
+      - metrics
+    outs:
+      - cv_results/cv_res.json

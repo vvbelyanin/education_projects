@@ -1,0 +1,10 @@
+# part2_dvc/params.yaml
+random_state: 42
+one_hot_drop: 'first'
+loss_function: 'MAE'
+learning_rate: 1
+iterations: 1000
+depth: 6
+n_splits: 5
+metrics: ['neg_mean_absolute_error', 'neg_root_mean_squared_error']
+n_jobs: -1

@@ -1,0 +1,58 @@
+2024-08-06 18:43:35,641 - 01: Testing the root endpoint:
+2024-08-06 18:43:35,643 - Got status: 200, response: {'status': 'Alive'}
+2024-08-06 18:43:35,644 - 02: Testing the top_popular endpoint:
+2024-08-06 18:43:36,343 - Got (200, <class 'dict'>, 25).
+2024-08-06 18:43:36,343 - 03: Testing the 10 top_popular endpoint:
+2024-08-06 18:43:36,942 - Got (200, <class 'dict'>, 10).
+2024-08-06 18:43:36,942 - 04: Testing the 10 similar endpoint with an item=87623076:
+2024-08-06 18:43:37,693 - Got (200, <class 'dict'>, 10).
+2024-08-06 18:43:37,693 - 05: Testing the history endpoint with a non-existing user_id=1387172:
+2024-08-06 18:43:37,695 - Got (200, <class 'list'>, 0).
+2024-08-06 18:43:37,696 - 06: Testing the post request with a new user_id=1387172:
+2024-08-06 18:43:37,698 - Got status: 200, response: {'status': '10 events for user_id=1387172 added.'}.
+2024-08-06 18:43:37,698 - 07: Testing the 5 history endpoint with the same new user_id=1387172:
+2024-08-06 18:43:37,700 - Got (200, <class 'list'>, 5).
+2024-08-06 18:43:37,700 - 08: Testing the output of 5 recommendations for a non-existing user_id=1391616:
+2024-08-06 18:43:38,316 - Got (200, <class 'dict'>, 5).
+2024-08-06 18:43:38,316 - 09: Testing the output of 5 recommendations for user_id=1387172, without personal recommendations, with a history:
+2024-08-06 18:43:39,046 - Got (200, <class 'dict'>, 5).
+2024-08-06 18:43:39,046 - 10: Testing the output of 5 recommendations for user_id=1261030, with personal recommendations, without a history:
+2024-08-06 18:43:39,603 - Got (200, <class 'dict'>, 5).
+2024-08-06 18:43:39,604 - 11: Testing the output of 10 recommendations for user_id=1000048, with personal recommendations, with a history:
+2024-08-06 18:43:40,229 - Got (200, <class 'dict'>, 10).
+2024-08-06 18:43:40,863 - Initial recommendations for user_id=1000048:
+          0: Комета / JONY / Комета / pop, ruspop
+          1: Юность / Dabro / Юность / pop, ruspop
+          2: Blinding Lights / The Weeknd / Blinding Lights, After Hours, The Highlights / rnb
+          3: Life / Zivert / Life, Made in Russia, Fresh Dance, Учителя (Музыка... / pop, ruspop
+          4: Shape of You / Ed Sheeran / Shape of You, ÷, Summer Vibes, Pop / pop
+          5: In The End / Tommee Profitt, Fleurie, Mellen Gi / In the End, Christian TikTok, Trending Now 2020: C... / rnb
+          6: Грустный дэнс / Artik & Asti, Артём Качер / Грустный дэнс, 7 (Part 1), Spring Music 2019 / pop, ruspop
+          7: Bring Me To Life / Evanescence / Fallen, Daredevil - The Album (Music From The Moti... / alternative, rock, allrock
+          8: Zombie / The Cranberries / Stars: The Best Of The Cranberries 1992-2002, Indi... / rock, allrock
+          9: bad guy / Billie Eilish / WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?, 2020 GRA... / indie
+
+2024-08-06 18:43:40,863 - Making a post request to add 10 events to the history of user_id=1000048:
+2024-08-06 18:43:40,865 - Got status: 200, response: {'status': '10 events for user_id=1000048 added.'}.
+2024-08-06 18:43:41,604 - Repeating the output of 10 recommendations for user_id=1000048, with personal recommendations and with an updated history:
+2024-08-06 18:43:42,353 - Got (200, <class 'dict'>, 10).
+2024-08-06 18:43:43,100 - Updated recommendations for user_id=1000048:
+          0: Комета / JONY / Комета / pop, ruspop
+          1: Столичная / Сергей Наговицын / Разбитая судьба / shanson
+          2: Юность / Dabro / Юность / pop, ruspop
+          3: На суде / Сергей Наговицын / Разбитая судьба / shanson
+          4: Blinding Lights / The Weeknd / Blinding Lights, After Hours, The Highlights / rnb
+          5: Каждому своё / Сергей Наговицын / Разбитая судьба / shanson
+          6: Life / Zivert / Life, Made in Russia, Fresh Dance, Учителя (Музыка... / pop, ruspop
+          7: С днём рождения, мама / Инна Вальтер / Лети, Новое и лучшее / shanson
+          8: Shape of You / Ed Sheeran / Shape of You, ÷, Summer Vibes, Pop / pop
+          9: Без проституток и воров / Сергей Наговицын / Золотистые денёчки, Приговор, Дзынь дзара / shanson
+
+2024-08-06 18:43:43,100 - 12: Testing the stats endpoint:
+2024-08-06 18:43:43,524 - Got status: 200, response: {'personal': 21, 'default': 3, 'similar': 27}
+ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 8.314s
+
+OK

@@ -1,0 +1,19 @@
+services:
+  fastapi:
+    # Specify the environment file to use for environment variables
+    env_file:
+      - .env
+      
+    # Build the Docker image using the Dockerfile in the current directory
+    build: .
+    
+    # Map the host port to the container port specified by the APP_PORT environment variable
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+      
+    # Set the hostname for the container
+    hostname: fastapi_app
+    
+    # Pass environment variables to the container
+    environment:
+      - APP_MODULE
