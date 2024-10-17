@@ -11,4 +11,4 @@
 | 4 | Поиск оптимальных гиперпараметров | `LogisticRegression` `alpha` `class_weigth` |
 | 5 | Анализ заданных метрик модели | `F1` `ROC AUC` `WordCloud` |
 
-Описание и выполнение см. в [Jupyter NB](./03_Выявление%20токсичных%20комментариев.ipynb)
+Описание и выполнение см. в [Jupyter NB](./workflow.ipynb)

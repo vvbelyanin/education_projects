@@ -10,4 +10,4 @@
 | 3 | Подбор гиперпараметров | `n_estimators` `learning_rate` `max_depth` |
 | 4 | Анализ заданных метрик модели | `ROC AUC` `confusion_matrix` |
 
-Описание и выполнение см. в [Jupyter NB](./05_Предсказание%20оттока%20клиентов.ipynb)
+Описание и выполнение см. в [Jupyter NB](./workflow.ipynb)
